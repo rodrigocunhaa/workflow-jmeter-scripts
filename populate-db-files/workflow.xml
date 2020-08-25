@@ -1,0 +1,317 @@
+<?xml version="1.0"?>
+<workflow-definition
+	xmlns="urn:liferay.com:liferay-workflow_7.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.1.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_1_0.xsd">
+	<version>1</version>
+	<state>
+		<name>StartNode</name>
+		<metadata>
+			<![CDATA[{"xy":[37,13]}]]>
+		</metadata>
+		<initial>true</initial>
+		<transitions>
+			<transition>
+				<name>Create Issue</name>
+				<target>Open</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>Closed</name>
+		<metadata>
+			<![CDATA[{"terminal":true,"xy":[188,15]}]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approve</name>
+				<description>Approve</description>
+				<script>
+					<![CDATA[com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(com.liferay.portal.kernel.workflow.WorkflowConstants.getLabelStatus("approved"), workflowContext);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+	</state>
+	<task>
+		<name>Open</name>
+		<metadata>
+			<![CDATA[{"xy":[10,210]}]]>
+		</metadata>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>20101</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Start Progress</name>
+				<target>In Progress</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Mark as Verified</name>
+				<target>Verified</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Contribute Solution</name>
+				<target>Contributed Solution</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Closed</name>
+				<target>Closed</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Resolved</name>
+				<target>Resolved</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>In Progress</name>
+		<metadata>
+			<![CDATA[{"xy":[765,327]}]]>
+		</metadata>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>20101</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Closed</name>
+				<target>Closed</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Resolved</name>
+				<target>Resolved</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Code Review Request</name>
+				<target>In Review</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Return to Verified</name>
+				<target>Verified</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Escalate To Product Team</name>
+				<target>Escalated</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>Resolved</name>
+		<metadata>
+			<![CDATA[{"xy":[747,22]}]]>
+		</metadata>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>20101</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Closed</name>
+				<target>Closed</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Reopen Issue</name>
+				<target>Reopened</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Failed QA</name>
+				<target>In Progress</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>Reopened</name>
+		<metadata>
+			<![CDATA[{"xy":[192,143]}]]>
+		</metadata>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>20101</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Closed</name>
+				<target>Closed</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Resolved</name>
+				<target>Resolved</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Mark as Verified</name>
+				<target>Verified</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Start Progress</name>
+				<target>In Progress</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>Contributed Solution</name>
+		<metadata>
+			<![CDATA[{"xy":[519,177]}]]>
+		</metadata>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>20101</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Return to Open</name>
+				<target>Open</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Closed</name>
+				<target>Closed</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Resolved</name>
+				<target>Resolved</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Start Progress</name>
+				<target>In Progress</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>In Review</name>
+		<metadata>
+			<![CDATA[{"xy":[385,489]}]]>
+		</metadata>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>20101</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Closed</name>
+				<target>Closed</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Resolved</name>
+				<target>Resolved</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Return to Verified</name>
+				<target>Verified</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>Verified</name>
+		<metadata>
+			<![CDATA[{"xy":[55,485]}]]>
+		</metadata>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>20101</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Return to Open</name>
+				<target>Open</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Closed</name>
+				<target>Closed</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Resolved</name>
+				<target>Resolved</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Return to Review</name>
+				<target>In Review</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Escalate To Product Team</name>
+				<target>Escalated</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>Escalated</name>
+		<metadata>
+			<![CDATA[{"xy":[582,530]}]]>
+		</metadata>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>20101</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Closed</name>
+				<target>Closed</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Resolved</name>
+				<target>Resolved</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>Start Progress</name>
+				<target>In Progress</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+</workflow-definition>
