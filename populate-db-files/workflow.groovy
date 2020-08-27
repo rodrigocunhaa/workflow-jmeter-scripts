@@ -63,19 +63,30 @@ for (int i = 0; i < 10000; i++) {
 }
 
 workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
         
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-    com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-        companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+while(!workflowTasks.isEmpty()) {
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+        com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
+            companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+    }
+
+    workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
+        companyId, userId, false, 0, 100, null);
 }
 
 workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
 
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-     com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
-        companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+while(!workflowTasks.isEmpty()) {
+
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+         com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
+            companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+    }
+
+    workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
+        companyId, userId, false, 0, 100, null);
 }
 
 for (int i = 10000; i < 20000; i++) {
@@ -83,20 +94,30 @@ for (int i = 10000; i < 20000; i++) {
 }
 
 workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
         
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-    com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-        companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+while(!workflowTasks.isEmpty()) {
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+        com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
+            companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+    }
 
+    workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
+        companyId, userId, false, 0, 100, null);
 }
 
 workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
 
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-     com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
-        companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+while(!workflowTasks.isEmpty()) {
+
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+         com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
+            companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+    }
+
+    workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
+        companyId, userId, false, 0, 100, null);
 }
 
 for (int i = 20000; i < 30000; i++) {
@@ -104,20 +125,30 @@ for (int i = 20000; i < 30000; i++) {
 }
 
 workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
         
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-    com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-        companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+while(!workflowTasks.isEmpty()) {
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+        com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
+            companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+    }
 
+    workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
+        companyId, userId, false, 0, 100, null);
 }
 
 workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
 
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-     com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
-        companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+while(!workflowTasks.isEmpty()) {
+
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+         com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
+            companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+    }
+
+    workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
+        companyId, userId, false, 0, 100, null);
 }
 
 for (int i = 30000; i < 40000; i++) {
@@ -125,70 +156,63 @@ for (int i = 30000; i < 40000; i++) {
 }
 
 workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
         
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-    com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-        companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+while(!workflowTasks.isEmpty()) {
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+        com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
+            companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+    }
 
+    workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
+        companyId, userId, false, 0, 100, null);
 }
 
 workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
 
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-     com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
-        companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+while(!workflowTasks.isEmpty()) {
+
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+         com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
+            companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+    }
+
+    workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
+        companyId, userId, false, 0, 100, null);
 }
-
 
 for (int i = 40000; i < 50000; i++) {
     com.liferay.blogs.service.BlogsEntryLocalServiceUtil.addEntry(userId, "Blog " + i, "Blog "+ i, serviceContext);
 }
 
 workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
         
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-    com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-        companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null) ;
+while(!workflowTasks.isEmpty()) {
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+        com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
+            companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null);
+    }
 
+    workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
+        companyId, userId, false, 0, 100, null);
 }
 
 workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
+    companyId, userId, false, 0, 100, null);
 
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-     com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
-        companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
-}
+while(!workflowTasks.isEmpty()) {
 
-workflowTasks = com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
-        
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-    com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.assignWorkflowTaskToUser(
-        companyId, userId, workflowTask.getWorkflowTaskId(), userId, com.liferay.petra.string.StringPool.BLANK, null, null) ;
+    for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
+         com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
+            companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+    }
 
-}
-
-workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
-
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-     com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
-        companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
+    workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
+        companyId, userId, false, 0, 100, null);
 }
 
 for (int i = 50000; i < 100000; i++) {
     com.liferay.blogs.service.BlogsEntryLocalServiceUtil.addEntry(userId, "Blog " + i, "Blog "+ i, serviceContext);
 }
-
-workflowTasks =  com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.getWorkflowTasksByUser(
-    companyId, userId, false, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS, null);
-
-for (com.liferay.portal.kernel.workflow.WorkflowTask workflowTask : workflowTasks) {
-     com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil.completeWorkflowTask(
-        companyId, userId, workflowTask.getWorkflowTaskId(), com.liferay.portal.kernel.util.Constants.APPROVE, com.liferay.petra.string.StringPool.BLANK, null);
-}
-
